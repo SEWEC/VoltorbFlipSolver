@@ -105,7 +105,7 @@ function getBestMove(finalBoards, moves){
   })
   
   const normalizedAggregate = aggregate.map(row => row.map(col => col.map(type => type/finalBoards.length)));
-  const probabilityOfTwoOrThree = normalizedAggregate.map(row => row.map(col => col[0] + col[1]));
+  const probabilityOfTwoOrThree = normalizedAggregate.map(row => row.map(col => col[3] === 0 ? Infinity * (col[0] + col[1]) : (col[0] + col[1]) / (col[3])));
   let maxProbabilityIndex = [0,0]
   let maxProbability = -1;
   probabilityOfTwoOrThree.forEach((row, i) => row.forEach((col, j) => {
